@@ -1,0 +1,95 @@
+<span><mat-icon>app_registration</mat-icon>{{title}}</span>
+<form *ngIf="form !== undefined" [formGroup]="form" class="signUp-form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="field-full-width" appearance="fill">
+      <mat-label>Firstname</mat-label>
+      <input matInput placeholder="firstName" formControlName="firstName" name="firstName" id="firstName" required>
+      <mat-error *ngIf="isFieldValid('firstName')">
+        <span *ngIf="isFieldValid('firstName', 'required')">
+            Firstname is required.
+        </span>  
+       </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="field-full-width" appearance="fill">
+        <mat-label>Lastname</mat-label>
+        <input matInput placeholder="lastName" formControlName="lastName"  name="lastName" id="lastName" required>
+        <mat-error *ngIf="isFieldValid('lastName')">
+            <span *ngIf="isFieldValid('lastName', 'required')">
+                Lastname is required.
+            </span>  
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="field-full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Ex. pat@example.com" formControlName="email"  name="email" id="email" required>
+        <mat-error *ngIf="isFieldValid('email')">
+            <span *ngIf="isFieldValid('email', 'required')">
+                Email is required.
+            </span>  
+            <span *ngIf="isFieldValid('email', 'email')">
+                Email is not correct.
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="field-full-width" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput  type="password" name="password" formControlName="password" id="password" required>
+        <mat-error *ngIf="isFieldValid('password')">
+            <span *ngIf="isFieldValid('password', 'required')">
+                Password is required.
+            </span>  
+            <span *ngIf="isFieldValid('password', 'password')">
+                Password is not correct.
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="field-full-width" appearance="fill">
+        <mat-label>Confirm password</mat-label>
+        <input matInput type="password"  name="passwordConfirm" formControlName="passwordConfirm" id="passwordConfirm" required>
+        <mat-error *ngIf="isFieldValid('passwordConfirm')">
+            <span *ngIf="isFieldValid('passwordConfirm', 'required')">
+                Password is required.
+            </span>  
+            <span *ngIf="isFieldValid('passwordConfirm', 'match')">
+                Password's do not match.
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary">Submit</button>
+  </form>
+
+  <div>
+    <div [ngClass]="{ 'active': isFieldValid('password', 'strong') }" class="validation-password">
+        <div class="valid" *ngIf="isCategoryValid('password', 'caps')">
+            <mat-icon>check_circle</mat-icon> Capital letters (A to Z)
+        </div>
+        <div *ngIf="!isCategoryValid('password', 'caps')">
+            <mat-icon>radio_button_unchecked</mat-icon> Capital letters (A to Z)
+        </div>
+        <div class="valid" *ngIf="isCategoryValid('password', 'small')">
+                <mat-icon>check_circle</mat-icon> Lowercase (a to z)
+            </div>
+        <div *ngIf="!isCategoryValid('password', 'small')">
+            <mat-icon>radio_button_unchecked</mat-icon> Lowercase (a to z)
+        </div>
+        <div class="valid" *ngIf="isCategoryValid('password', 'digit')">
+            <mat-icon>check_circle</mat-icon> Numbers (0 to 9)
+        </div>
+        <div *ngIf="!isCategoryValid('password', 'digit')">
+            <mat-icon>radio_button_unchecked</mat-icon> Numbers (0 to 9)
+        </div>
+        <div class="valid" *ngIf="isCategoryValid('password', 'special')">
+            <mat-icon>check_circle</mat-icon> Special characters (as, @, $, !, %, *, ?, &, +)​
+        </div>
+        <div *ngIf="!isCategoryValid('password', 'special')">
+            <mat-icon>radio_button_unchecked</mat-icon> Special characters (as, @, $, !, %, *, ?, &, +)​
+        </div>
+        <div class="valid" *ngIf="isCategoryValid('password', 'len12')">
+            <mat-icon>check_circle</mat-icon> Minimal 12 characters
+        </div>
+        <div *ngIf="!isCategoryValid('password', 'len12')">
+            <mat-icon>radio_button_unchecked</mat-icon> Minimal 12 characters
+        </div>
+    </div>
+</div>
+  

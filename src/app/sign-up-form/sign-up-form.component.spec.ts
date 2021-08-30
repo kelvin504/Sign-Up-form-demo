@@ -9,7 +9,7 @@ import { Router, RouterModule, Routes } from '@angular/router';
 describe('SignUpFormComponent', () => {
   let component: SignUpFormComponent;
   let fixture: ComponentFixture<SignUpFormComponent>;
-  const twainService = jasmine.createSpyObj('TwainService', ['getQuote']);
+  const twainService = jasmine.createSpyObj('Mockdata', ['mock@mocl.nl']);
   // Make the spy return a synchronous Observable with the test data
   //getQuoteSpy = twainService.getQuote.and.returnValue(of(testQuote));
 
